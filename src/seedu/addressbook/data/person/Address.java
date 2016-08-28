@@ -52,7 +52,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return block.getBlock() + street.getStreet() + unit.getUnit() + postal.getPostal();
+        return block.getBlock() + ", " + street.getStreet() + ", " + unit.getUnit() + ", " + postal.getPostal();
     }
 
     @Override
