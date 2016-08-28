@@ -18,7 +18,27 @@ import java.util.Scanner;
  */
 public class TextUi {
 
-    /** A decorative prefix added to the beginning of lines printed by AddressBook */
+    public static class Formatter {
+		public Scanner in;
+		public PrintStream out;
+
+		public Formatter() {
+		}
+
+		public void showWelcomeMessage(TextUi textUi, String version, String storageFilePath) {
+		    String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
+		    textUi.showToUser(
+		            TextUi.DIVIDER,
+		            TextUi.DIVIDER,
+		            MESSAGE_WELCOME,
+		            version,
+		            MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
+		            storageFileInfo,
+		            TextUi.DIVIDER);
+		}
+	}
+
+	/** A decorative prefix added to the beginning of lines printed by AddressBook */
     private static final String LINE_PREFIX = "|| ";
 
     /** A platform independent line separator. */
@@ -36,16 +56,15 @@ public class TextUi {
     /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
 
-    private final Scanner in;
-    private final PrintStream out;
+    public Formatter formatter = new Formatter();
 
-    public TextUi(){
+	public TextUi(){
         this(System.in, System.out);
     }
 
     public TextUi(InputStream in, PrintStream out) {
-        this.in = new Scanner(in);
-        this.out = out;
+        this.formatter.in = new Scanner(in);
+        this.formatter.out = out;
     }
 
     /**
@@ -76,30 +95,18 @@ public class TextUi {
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
-        out.print(LINE_PREFIX + "Enter command: ");
-        String fullInputLine = in.nextLine();
+        formatter.out.print(LINE_PREFIX + "Enter command: ");
+        String fullInputLine = formatter.in.nextLine();
 
         // silently consume all ignored lines
         while (shouldIgnore(fullInputLine)) {
-            fullInputLine = in.nextLine();
+            fullInputLine = formatter.in.nextLine();
         }
 
         showToUser("[Command entered:" + fullInputLine + "]");
         return fullInputLine;
     }
 
-
-    public void showWelcomeMessage(String version, String storageFilePath) {
-        String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        showToUser(
-                DIVIDER,
-                DIVIDER,
-                MESSAGE_WELCOME,
-                version,
-                MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
-                storageFileInfo,
-                DIVIDER);
-    }
 
     public void showGoodbyeMessage() {
         showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
@@ -113,7 +120,7 @@ public class TextUi {
     /** Shows message(s) to the user */
     public void showToUser(String... message) {
         for (String m : message) {
-            out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
+            formatter.out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
         }
     }
 
