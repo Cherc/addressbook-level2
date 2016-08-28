@@ -88,6 +88,16 @@ public class StorageFile {
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
          */
+    	try {
+    		File file = path.toFile();    	
+    		if (!file.exists() || file.isDirectory()){
+    			throw new FileNotFoundException();
+    		}
+    	}
+    	catch(FileNotFoundException fnfe){
+    		System.out.println("File not found, exiting");
+    		System.exit(0);
+    	}
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
 
