@@ -56,7 +56,7 @@ public class Main {
             ui.formatter.showWelcomeMessage(ui, VERSION, storage.getPath());
 
         } catch (InvalidStorageFilePathException | StorageOperationException e) {
-            ui.showInitFailedMessage();
+            ui.formatter.showInitFailedMessage(ui);
             /*
              * ==============NOTE TO STUDENTS=========================================================================
              * We are throwing a RuntimeException which is an 'unchecked' exception. Unchecked exceptions do not need
@@ -72,7 +72,7 @@ public class Main {
 
     /** Prints the Goodbye message and exits. */
     private void exit() {
-        ui.showGoodbyeMessage();
+        ui.formatter.showGoodbyeMessage(ui);
         System.exit(0);
     }
 

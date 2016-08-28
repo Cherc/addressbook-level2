@@ -18,33 +18,13 @@ import java.util.Scanner;
  */
 public class TextUi {
 
-    public static class Formatter {
-		public Scanner in;
-		public PrintStream out;
-
-		public Formatter() {
-		}
-
-		public void showWelcomeMessage(TextUi textUi, String version, String storageFilePath) {
-		    String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-		    textUi.showToUser(
-		            TextUi.DIVIDER,
-		            TextUi.DIVIDER,
-		            MESSAGE_WELCOME,
-		            version,
-		            MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
-		            storageFileInfo,
-		            TextUi.DIVIDER);
-		}
-	}
-
-	/** A decorative prefix added to the beginning of lines printed by AddressBook */
+    /** A decorative prefix added to the beginning of lines printed by AddressBook */
     private static final String LINE_PREFIX = "|| ";
 
     /** A platform independent line separator. */
     private static final String LS = System.lineSeparator();
 
-    private static final String DIVIDER = "===================================================";
+    static final String DIVIDER = "===================================================";
 
     /** Format of indexed list item */
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
@@ -107,15 +87,6 @@ public class TextUi {
         return fullInputLine;
     }
 
-
-    public void showGoodbyeMessage() {
-        showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
-    }
-
-
-    public void showInitFailedMessage() {
-        showToUser(MESSAGE_INIT_FAILED, DIVIDER, DIVIDER);
-    }
 
     /** Shows message(s) to the user */
     public void showToUser(String... message) {
