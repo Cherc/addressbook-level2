@@ -84,7 +84,7 @@ public class Main {
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
             recordResult(result);
-            ui.showResultToUser(result);
+            ui.formatter.showResultToUser(ui, result);
 
         } while (!ExitCommand.isExit(command));
     }
@@ -110,7 +110,7 @@ public class Main {
             storage.save(addressBook);
             return result;
         } catch (Exception e) {
-            ui.showToUser(e.getMessage());
+            ui.formatter.showToUser(ui, e.getMessage());
             throw new RuntimeException(e);
         }
     }
