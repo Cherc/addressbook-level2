@@ -21,5 +21,8 @@ public class NameIsSimilarTest {
         assertFalse(name1.isSimilar(null));
     }
         
+    public void sameName_returnsTrue(){
+        assertTrue(name1.isSimilar(name1));
+    }
     
 }
