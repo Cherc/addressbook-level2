@@ -10,7 +10,7 @@ import seedu.addressbook.data.tag.UniqueTagList;
 public interface ReadOnlyPerson {
 
     Name getName();
-    Phone getPhone();
+    Contact getPhone();
     Email getEmail();
     Address getAddress();
 
