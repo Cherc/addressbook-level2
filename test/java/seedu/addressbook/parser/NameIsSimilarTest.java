@@ -11,11 +11,13 @@ public class NameIsSimilarTest {
 
     Name name1;
     Name name2;
+    Name name3;
     
     @Before 
     public void setup() throws IllegalValueException{
         name1 = new Name("John");
         name2 = new Name("jOhN");
+        name3 = new Name("john doe");
     }
     
     @Test
@@ -31,6 +33,11 @@ public class NameIsSimilarTest {
     @Test
     public void sameLetterDiffCase_returnsTrue(){
         assertTrue(name1.isSimilar(name2));
+    }
+    
+    @Test
+    public void containSameWords_returnsTrue(){
+        assertTrue(name1.isSimilar(name3));
     }
     
 }
