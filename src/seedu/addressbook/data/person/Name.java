@@ -77,6 +77,19 @@ public class Name {
         if (lowerThisName.equals(lowerOtherName)){
             return true;
         }
+        
+        List<String> wordsInThis = this.getWordsInName();
+        List<String> wordsInOther = ((Name)other).getWordsInName();
+        
+        //Finds any common words between the words this Name and the words in the other Name
+        for (String thisWord : wordsInThis){
+            for(String otherWord : wordsInOther){
+                if(thisWord.toLowerCase().equals(otherWord.toLowerCase())){
+                    return true;
+                }
+            }
+        }
+        
         return false;
     }
 
