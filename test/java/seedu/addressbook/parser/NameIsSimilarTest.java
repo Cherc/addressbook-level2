@@ -20,7 +20,8 @@ public class NameIsSimilarTest {
     public void null_returnsFalse(){
         assertFalse(name1.isSimilar(null));
     }
-        
+    
+    @Test
     public void sameName_returnsTrue(){
         assertTrue(name1.isSimilar(name1));
     }

@@ -67,6 +67,9 @@ public class Name {
      */
     public boolean isSimilar(Name other) {
         
+        if (this.equals(other)){
+            return true;
+        }
         return false;
     }
 
