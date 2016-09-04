@@ -70,7 +70,11 @@ public class Name {
         if (other == null){
             return false;
         }
-        else if (this.fullName.toLowerCase().equals(((Name)other).fullName.toLowerCase())){
+                
+        String lowerThisName = this.fullName.toLowerCase();        
+        String lowerOtherName = ((Name)other).fullName.toLowerCase();
+        
+        if (lowerThisName.equals(lowerOtherName)){
             return true;
         }
         return false;
